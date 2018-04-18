@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+<link href="{{ url_for('static', filename='css/all.css') }}" type= "text/css" rel="stylesheet">
+{% block main %}
+
+<h1>Make A Booking</h1>
+<hr class="top"/>
+
+  <form method="POST" action="{{ url_for('booking') }}" >
+
+  <fieldset>
+    <legend>Booking Information:</legend>
+    Full Name:<br>
+    <input type="text" name="fullname">
+    <br>
+    Email:<br>
+    <input type="text" name="email">
+    <br>
+    Contact Number:<br>
+    <input type="text" name="contact">
+    <br>
+    Description:<br>
+    <textarea rows="4" cols="50" placeholder="State the type of service required..."></textarea>
+    
+    <br><br>
+    <input type="submit" value="Submit">
+  </fieldset>
+
+   
+  </form>
+
+{% endblock %}

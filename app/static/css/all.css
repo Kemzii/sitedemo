@@ -1,0 +1,47 @@
+h1,h2,h3,h4 {
+    text-align: center;
+    font-style: italic;
+    color: #59b0f7;
+    
+}
+
+p,body {
+    font-style: italic;
+    clear: both;
+    position: relative;
+    font-weight: bold;
+    background-color: #e3e8e4;
+  
+}
+
+ul {
+    display:inline-block;
+    display: inline-block;
+
+}
+#footer {
+   position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+#contact {
+    text-align: center;
+   
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+  
+   
+} 
+.list, .contact {
+    border: 1px solid #ddd;
+    text-align: center;
+    float: center;
+
+}
