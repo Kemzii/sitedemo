@@ -5,26 +5,34 @@
 <h1>Make A Booking</h1>
 <hr class="top"/>
 
-  <form method="POST" action="{{ url_for('booking') }}" >
+  <form method="POST" action="{{ url_for('booking') }}">
+      {% include 'flash_messages.html' %}
 
-  <fieldset>
-    <legend>Booking Information:</legend>
-    Full Name:<br>
-    <input type="text" name="fullname">
+    {{ form.csrf_token }}
+
+    <div>
+     {{ form.fullname.label }} <br>
+     {{ form.fullname(size=20) }}
+     </div>
     <br>
-    Email:<br>
-    <input type="text" name="email">
+    <div>
+    {{ form.contact.label }} <br>
+    {{ form.contact }}
+    </div>
     <br>
-    Contact Number:<br>
-    <input type="text" name="contact">
+    <div>
+    {{ form.email.label }} <br>
+    {{ form.email (placeholder="jdoe@example.com")  }}
+    </div>
     <br>
-    Description:<br>
-    <textarea rows="4" cols="50" placeholder="State the type of service required..."></textarea>
+    <div>
+    {{ form.description.label }} <br>
+    {{ form.description (placeholder="State the type of service required...") }}
+    </div>
     
-    <br><br>
-    <input type="submit" value="Submit">
-  </fieldset>
-
+    <br>
+    <input type="submit" value="Submit"/>
+    
    
   </form>
 

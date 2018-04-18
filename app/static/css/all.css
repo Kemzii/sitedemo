@@ -14,6 +14,10 @@ p,body {
   
 }
 
+p {
+    font-size: 18px;
+}
+
 ul {
     display:inline-block;
     display: inline-block;
@@ -44,4 +48,9 @@ img {
     text-align: center;
     float: center;
 
+}
+.box {
+    border-style: solid;
+    border: 3px solid #ddd;
+    border-radius: 5px;
 }

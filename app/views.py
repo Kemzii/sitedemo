@@ -4,10 +4,11 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-
+import os
 from app import app
 from flask import render_template, request, redirect, url_for, flash
-
+from app import app
+from forms import MyForm
 
 ###
 # Routing for your application.
@@ -37,7 +38,18 @@ def rates():
 @app.route('/booking', methods= ['POST', "GET"])
 def booking():
     """Render the website's booking page."""
-    return render_template('booking.html')
+    myform = MyForm()
+    
+    if myform.validate_on_submit():
+        fullname = myform.fullname.data
+        email = myform.email.data
+        contact = myform.contact.data
+        description = myform.description.data
+            
+    
+        flash('Booking Received!', 'success')
+    flash_errors(myform)
+    return render_template('booking.html', form=myform)
 
 
 ###
@@ -62,6 +74,14 @@ def add_header(response):
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
+
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ), 'danger')
 
 @app.errorhandler(404)
 def page_not_found(error):
