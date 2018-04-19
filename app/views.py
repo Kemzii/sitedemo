@@ -4,11 +4,16 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-import os
+import os, stripe
 from app import app
 from flask import render_template, request, redirect, url_for, flash
 from app import app
 from forms import MyForm
+
+secret_key= 'sk_test_xzF80X2o1QMyNdXL40ieOgJc'
+publishable_key='pk_test_DbWPAPUGpY2hhE1AQGKP4XMu'
+
+stripe.api_key = secret_key
 
 ###
 # Routing for your application.
@@ -50,6 +55,31 @@ def booking():
         flash('Booking Received!', 'success')
     flash_errors(myform)
     return render_template('booking.html', form=myform)
+
+@app.route('/services')
+def services():
+    """Render the website's services page."""
+    return render_template('services.html', publishable_key=publishable_key)
+
+
+@app.route('/charge', methods=['POST'])
+def charge():
+    # Amount in cents
+    amount = 32000
+
+    customer = stripe.Customer.create(
+        email='customer@example.com',
+        source=request.form['stripeToken']
+    )
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=amount,
+        currency='jmd',
+        description='Flask Charge'
+    )
+    flash("Thanks! Payment Received.", 'success')
+    return render_template('services.html', amount=amount)
 
 
 ###

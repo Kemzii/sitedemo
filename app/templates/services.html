@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3> Request A Service!</h3>
+<br>
+{% include 'flash_messages.html' %}
+
+<div class ="pay">
+  <br>
+  <p> Pay for a service: </p>
+<select>
+  <option value="letter">Letter</option>
+  <option value="MealDelivery">Meal Delivery</option>
+  <option value="SmallPackage">Small Package</option>
+  <option value="utility">Utility Parts</option>
+</select>
+
+  <form action="/charge" method="post">
+    <article>
+      <label>
+        <span>Amount is $350</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_DbWPAPUGpY2hhE1AQGKP4XMu"
+            data-description="Service Charge"
+            data-amount=320"
+            data-locale="auto"></script>
+  </form>
+</div>
+{% endblock %}

@@ -43,13 +43,13 @@ img {
   
    
 } 
-.list, .contact {
+.list, .contact, .pay {
     border: 1px solid #ddd;
     text-align: center;
     float: center;
 
 }
-.box {
+.box, .pay {
     border-style: solid;
     border: 3px solid #ddd;
     border-radius: 5px;
